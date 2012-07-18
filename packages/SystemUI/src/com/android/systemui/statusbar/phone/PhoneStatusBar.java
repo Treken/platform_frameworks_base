@@ -112,6 +112,7 @@ import com.android.systemui.statusbar.CommandQueue;
 import com.android.systemui.statusbar.GestureRecorder;
 import com.android.systemui.statusbar.NotificationData;
 import com.android.systemui.statusbar.NotificationData.Entry;
+import com.android.systemui.statusbar.SignalClusterTextView;
 import com.android.systemui.statusbar.SignalClusterView;
 import com.android.systemui.statusbar.StatusBarIconView;
 import com.android.systemui.statusbar.phone.ShortcutsWidget;
@@ -268,6 +269,11 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
     private int mNotificationHeaderHeight;
 
     private boolean mShowCarrierInPanel = false;
+    private boolean mNotificationShortcutsHideCarrier;
+
+    private SignalClusterView mSignalClusterView;
+    private MSimSignalClusterView mMSimSignalClusterView;
+    private SignalClusterTextView mSignalTextView;
 
     // position
     int[] mPositionTmp = new int[2];
@@ -452,6 +458,8 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.NOTIFICATION_ALPHA),
                     false, this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.STATUS_BAR_SIGNAL_TEXT), false, this);
             update();
         }
 
@@ -496,10 +504,10 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                 if (mSettingsPanel != null) {
                     mSettingsPanel.setBackgroundDrawables();
                 }
-            }else if (uri.equals(Settings.System.getUriFor(
+            } else if (uri.equals(Settings.System.getUriFor(
                     Settings.System.NOTIFICATION_ALPHA))) {
                 setNotificationAlpha();
-            }else if (uri.equals(Settings.System.getUriFor(
+            } else if (uri.equals(Settings.System.getUriFor(
                     Settings.System.LOCKSCREEN_CAMERA_WIDGET))) {
                 if (mNavigationBarView != null) {
                     mNavigationBarView.disableCameraByUser();
@@ -526,7 +534,24 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
             if (mCarrierLabel != null) {
                 toggleCarrierAndWifiLabelVisibility();
             }
-            updateBatteryIcons();
+
+            int signalStyle = Settings.System.getIntForUser(resolver,
+                    Settings.System.STATUS_BAR_SIGNAL_TEXT,
+                    SignalClusterView.STYLE_NORMAL, mCurrentUserId);
+            if (MSimTelephonyManager.getDefault().isMultiSimEnabled()) {
+                mMSimSignalClusterView.setStyle(signalStyle);
+            } else {
+                mSignalClusterView.setStyle(signalStyle);
+                mSignalTextView.setStyle(signalStyle);
+            }
+        }
+    }
+
+
+    private void updateBatteryIcons() {
+        if (mBattery != null && mCircleBattery != null) {
+            mBattery.updateSettings();
+            mCircleBattery.updateSettings();
         }
     }
 
