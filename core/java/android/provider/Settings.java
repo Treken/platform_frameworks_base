@@ -2557,13 +2557,34 @@ public final class Settings {
         public static final String EGG_MODE = "egg_mode";
 
         /**
+         * Quick Settings Quick access ribbon
+         *
+         * @hide
+         */
+        public static final String QS_QUICK_ACCESS = "qs_quick_access";
+
+        /**
+         * Quick Settings Quick access ribbon - linked layout
+         *
+         * @hide
+         */
+        public static final String QS_QUICK_ACCESS_LINKED = "qs_quick_access_linked";
+
+       /**
+         * Quick Settings Ribbon Tiles to Use
+         *
+         * @hide
+         */
+        public static final String QUICK_SETTINGS_RIBBON_TILES = "quick_settings_ribbon_tiles";
+
+        /**
          * Show or hide clock
          * 0 - hide
          * 1 - show (default)
          * @hide
          */
         public static final String STATUS_BAR_CLOCK = "status_bar_clock";
-
+		
         /**
          * AM/PM Style for clock options
          * 0 - Normal AM/PM
