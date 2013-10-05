@@ -2619,6 +2619,13 @@ public final class Settings {
         public static final String EGG_MODE = "egg_mode";
 
         /**
+         * Quick Settings show text under icon
+         *
+         * @hide
+         */
+        public static final String QUICK_SETTINGS_HIDE_LABELS = "qs_hide_text";
+
+        /**
          * Quick Settings Quick access ribbon
          *
          * @hide
