@@ -2619,6 +2619,19 @@ public final class Settings {
         public static final String EGG_MODE = "egg_mode";
 
         /**
+         * Show circle memory indicator in recents panel view
+         *  @hide
+         */
+        public static final String SHOW_RECENTS_MEMORY_INDICATOR = "show_recents_memory_indicator";
+
+        /**
+         * Location of the memory indicator
+         * @hide
+         */
+        public static final String RECENTS_MEMORY_INDICATOR_LOCATION =
+                "recents_memory_indicator_location";
+
+        /**
          * Quick Settings show text under icon
          *
          * @hide
