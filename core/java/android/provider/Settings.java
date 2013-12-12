@@ -2811,7 +2811,7 @@ public final class Settings {
          */
         public static final String QUIET_HOURS_STILL = "quiet_hours_still";
 
-        /*
+        /**
          * Display style of the status bar battery information
          * default: 0
          * @hide
@@ -3130,6 +3130,13 @@ public final class Settings {
          * @hide
          */
         public static final String LOCKSCREEN_SEE_THROUGH = "lockscreen_see_through";
+
+        /**		
+         * Allows blurring the lockscreen background
+         * @hide
+         */
+        public static final String LOCKSCREEN_BLUR_BEHIND = "lockscreen_blur_behind";
+        public static final String LOCKSCREEN_BLUR_RADIUS = "lockscreen_blur_radius";
 
         /**
          * Settings to backup. This is here so that it's in the same place as the settings
