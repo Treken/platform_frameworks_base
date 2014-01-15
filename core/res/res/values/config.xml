@@ -1334,6 +1334,9 @@
 
     <!-- Boolean to enable stk functionality on Samsung phones -->
     <bool name="config_samsung_stk">false</bool>
+    
+    <!-- Torch config -->
+    <bool name="config_enableTorch">false</bool>
 
     <!-- bool value to for enabling motion accelerometer -->
     <bool name="use_motion_accel">false</bool>
