@@ -2699,6 +2699,13 @@ public final class Settings {
         * @hide
         */
         public static final String EXPANDED_FLASH_MODE = "expanded_flash_mode";
+        
+        /**
+         * Enable looking up of phone numbers of people
+         *
+         * @hide
+         */
+        public static final String ENABLE_PEOPLE_LOOKUP = "enable_people_lookup";
 		
         /**
          * Enable looking up of phone numbers of nearby places
