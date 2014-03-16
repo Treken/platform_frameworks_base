@@ -40,6 +40,7 @@ import static com.android.internal.util.cm.QSConstants.TILE_SCREENTIMEOUT;
 import static com.android.internal.util.cm.QSConstants.TILE_SETTINGS;
 import static com.android.internal.util.cm.QSConstants.TILE_SLEEP;
 import static com.android.internal.util.cm.QSConstants.TILE_SYNC;
+import static com.android.internal.util.cm.QSConstants.TILE_TENTACLES;
 import static com.android.internal.util.cm.QSConstants.TILE_TORCH;
 import static com.android.internal.util.cm.QSConstants.TILE_USER;
 import static com.android.internal.util.cm.QSConstants.TILE_VOLUME;
@@ -89,6 +90,7 @@ import com.android.systemui.quicksettings.RingerModeTile;
 import com.android.systemui.quicksettings.ScreenTimeoutTile;
 import com.android.systemui.quicksettings.SleepScreenTile;
 import com.android.systemui.quicksettings.SyncTile;
+import com.android.systemui.quicksettings.TentaclesTile;
 import com.android.systemui.quicksettings.ToggleLockscreenTile;
 import com.android.systemui.quicksettings.TorchTile;
 import com.android.systemui.quicksettings.UsbTetherTile;
@@ -222,6 +224,8 @@ public class QuickSettingsController {
                 qs = new RingerModeTile(mContext, this);
             } else if (tile.equals(TILE_SYNC)) {
                 qs = new SyncTile(mContext, this);
+            } else if (tile.equals(TILE_TENTACLES)) {
+                qs = new TentaclesTile(mContext, this);
             } else if (tile.equals(TILE_WIFIAP) && mobileDataSupported) {
                 qs = new WifiAPTile(mContext, this);
             } else if (tile.equals(TILE_SCREENTIMEOUT)) {

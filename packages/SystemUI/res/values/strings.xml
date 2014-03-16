@@ -506,6 +506,9 @@
          If the text fits on one line (~14 chars), it should start with a
          linebreak to position it correctly.  [CHAR LIMIT=45] -->
     <string name="ssl_ca_cert_warning">Network may\nbe monitored</string>
+    
+    <!-- Tentacles tile -->
+    <string name="quick_settings_tentacles_label">Tentacles Settings</string>
 
     <string name="accessibility_data_connection_HP">HSPA+</string>
 
