@@ -2858,13 +2858,6 @@ public final class Settings {
          * @hide
          */
         public static final String QUIET_HOURS_RINGER = "quiet_hours_ringer";
-        
-        /**
-         * Config for advanced power menu
-         *
-         * @hide
-         */
-        public static final String POWER_MENU_CONFIG = "power_menu_config";
 		
 	    /**
          * QuickSettings music tile mode
