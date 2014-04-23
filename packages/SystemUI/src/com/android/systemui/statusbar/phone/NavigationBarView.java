@@ -122,6 +122,9 @@ public class NavigationBarView extends LinearLayout {
     private DeadZone mDeadZone;
     private final NavigationBarTransitions mBarTransitions;
 
+    private boolean mModLockDisabled = true;
+    private SettingsObserver mObserver;
+
     private int mNavBarButtonColor;
     private int mNavBarButtonColorMode;
     private boolean mAppIsBinded;
@@ -750,7 +753,7 @@ public class NavigationBarView extends LinearLayout {
             setVisibleOrGone(searchLight, disableHome && !disableSearch);
         }
 
-        setVisibleOrGone(getCameraButton(), showCamera && mModLockDisabled);
+        setVisibleOrGone(getSearchLight(), showSearch && mModLockDisabled);
 
         mBarTransitions.applyBackButtonQuiescentAlpha(mBarTransitions.getMode(), true /*animate*/);
 
@@ -872,11 +875,11 @@ public class NavigationBarView extends LinearLayout {
         super.onAttachedToWindow();
 
         final Bundle keyguard_metadata = NavigationBarView
-                    .getApplicationMetadata(mContext, "com.android.keyguard");
-                if (null != keyguard_metadata &&
-                    keyguard_metadata.getBoolean("com.cyanogenmod.keyguard", false)) {
-                        mObserver.observe();
-                }
+                .getApplicationMetadata(mContext, "com.android.keyguard");
+        if (null != keyguard_metadata &&
+                keyguard_metadata.getBoolean("com.cyanogenmod.keyguard", false)) {
+            mObserver.observe();
+        }
     }
 
     @Override
