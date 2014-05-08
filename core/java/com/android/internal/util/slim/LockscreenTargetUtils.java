@@ -49,6 +49,11 @@ import java.io.File;
 public final class LockscreenTargetUtils {
     private static final String TAG = "LockscreenTargetUtils";
 
+     /**
+       * @hide
+       */
+      public final static String ICON_FILE = "icon_file";
+
     private LockscreenTargetUtils() {
     }
 
