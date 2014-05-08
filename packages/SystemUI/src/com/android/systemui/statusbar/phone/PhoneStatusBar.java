@@ -151,6 +151,9 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
     public static final String ACTION_STATUSBAR_START
             = "com.android.internal.policy.statusbar.START";
 
+    public static final String CUSTOM_LOCKSCREEN_STATE
+            = "com.android.keyguard.custom.STATE";
+
     private static final int MSG_OPEN_NOTIFICATION_PANEL = 1000;
     private static final int MSG_CLOSE_PANELS = 1001;
     private static final int MSG_OPEN_SETTINGS_PANEL = 1002;
@@ -1021,6 +1024,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         filter.addAction(Intent.ACTION_SCREEN_OFF);
         filter.addAction(Intent.ACTION_SCREEN_ON);
         filter.addAction(ACTION_DEMO);
+        filter.addAction(CUSTOM_LOCKSCREEN_STATE);
         context.registerReceiver(mBroadcastReceiver, filter);
 
         // receive broadcasts for app actions
@@ -3139,24 +3143,10 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                     }
                 }
             }
-        }
-    };
-
-    private BroadcastReceiver mAppBroadcastReceiver = new BroadcastReceiver() {
-        public void onReceive(Context context, Intent intent) {
-            String action = intent.getAction();
-            if (Intent.ACTION_EXTERNAL_APPLICATIONS_UNAVAILABLE.equals(action)
-                || Intent.ACTION_EXTERNAL_APPLICATIONS_AVAILABLE.equals(action)
-                || Intent.ACTION_PACKAGE_REMOVED.equals(action)
-                || Intent.ACTION_PACKAGE_CHANGED.equals(action)
-                || Intent.ACTION_PACKAGE_ADDED.equals(action)) {
-
-                if (mSearchPanelView != null && mSearchPanelView.hasAppBinded()) {
-                    mSearchPanelView.updateSettings();
-                }
-                if (mNavigationBarView != null && mNavigationBarView.hasAppBinded()) {
-                    mNavigationBarView.recreateNavigationBar();
-                    prepareNavigationBarView();
+            else if (CUSTOM_LOCKSCREEN_STATE.equals(action)) {
+                boolean showing = intent.getBooleanExtra("showing", false);
+                if (null != mNavigationBarView) {
+                    mNavigationBarView.getBarTransitions().applyTransparent(showing);
                 }
             }
         }
