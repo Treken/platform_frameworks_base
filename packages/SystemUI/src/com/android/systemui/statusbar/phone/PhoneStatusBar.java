@@ -3144,9 +3144,25 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                 }
             }
             else if (CUSTOM_LOCKSCREEN_STATE.equals(action)) {
-                boolean showing = intent.getBooleanExtra("showing", false);
-                if (null != mNavigationBarView) {
-                    mNavigationBarView.getBarTransitions().applyTransparent(showing);
+        }
+    };
+
+
+    private BroadcastReceiver mAppBroadcastReceiver = new BroadcastReceiver() {
+        public void onReceive(Context context, Intent intent) {
+            String action = intent.getAction();
+            if (Intent.ACTION_EXTERNAL_APPLICATIONS_UNAVAILABLE.equals(action)
+                || Intent.ACTION_EXTERNAL_APPLICATIONS_AVAILABLE.equals(action)
+                || Intent.ACTION_PACKAGE_REMOVED.equals(action)
+                || Intent.ACTION_PACKAGE_CHANGED.equals(action)
+                || Intent.ACTION_PACKAGE_ADDED.equals(action)) {
+
+                if (mSearchPanelView != null && mSearchPanelView.hasAppBinded()) {
+                    mSearchPanelView.updateSettings();
+                }
+                if (mNavigationBarView != null && mNavigationBarView.hasAppBinded()) {
+                    mNavigationBarView.recreateNavigationBar();
+                    prepareNavigationBarView();
                 }
             }
         }
