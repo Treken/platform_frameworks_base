@@ -147,9 +147,6 @@ public class NavigationBarView extends LinearLayout {
     // performs manual animation in sync with layout transitions
     private final NavTransitionListener mTransitionListener = new NavTransitionListener();
 
-    private boolean mModLockDisabled = true;
-    private SettingsObserver mObserver;
-
     private class NavTransitionListener implements TransitionListener {
         private boolean mBackTransitioning;
         private boolean mAppearing;
@@ -752,8 +749,6 @@ public class NavigationBarView extends LinearLayout {
         if (searchLight != null) {
             setVisibleOrGone(searchLight, disableHome && !disableSearch);
         }
-
-        setVisibleOrGone(getSearchLight(), showSearch && mModLockDisabled);
 
         mBarTransitions.applyBackButtonQuiescentAlpha(mBarTransitions.getMode(), true /*animate*/);
 
