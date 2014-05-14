@@ -2494,6 +2494,12 @@ public final class Settings {
         public static final String LOW_BATTERY_SOUND = Global.LOW_BATTERY_SOUND;
 
         /**
+         * Whether to enable the modlock keyguard
+         * @hide
+         */
+        public static final String LOCKSCREEN_MODLOCK_ENABLED = "lockscreen_modlock_enabled";
+
+        /**
          * @deprecated Use {@link android.provider.Settings.Global#DESK_DOCK_SOUND}
          * instead
          * @hide
@@ -3684,6 +3690,7 @@ public final class Settings {
             POINTER_SPEED,
             VIBRATE_WHEN_RINGING,
             RINGTONE,
+            LOCKSCREEN_MODLOCK_ENABLED,
             NOTIFICATION_SOUND
         };
 
